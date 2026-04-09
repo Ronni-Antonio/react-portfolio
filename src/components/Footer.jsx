@@ -15,7 +15,7 @@ function Footer(){
 
     return(
         <footer className='bg-[#22223B] p-5'>
-            <div className='flex flex-col-3 gap-4 text-white justify-around'>
+            <div className='flex flex-col-3 gap-4 text-white justify-between'>
                 <div className='flex-1'>
                     <h3 className='text-3xl'>iamrhoanne</h3>
                     <p className='mt-5'>Thank you for visiting my website, let's build something together!</p>

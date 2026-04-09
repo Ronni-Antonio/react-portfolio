@@ -15,7 +15,7 @@ function About(){
         <div id="About" className="bg-white text-slate-950 min-h-screen scroll-mt-24">
             <div className="mx-auto w-full max-w-6xl px-6 py-12">
                 <div className="text-center mb-12">
-                    <h2 className='font-bold text-4xl mb-6'>{icon} About Me</h2>
+                    <h2 className='font-bold text-4xl mb-6 mt-14'>{icon} About Me</h2>
                 </div>
                 <div className="grid gap-10 lg:grid-cols-[420px_minmax(0,1fr)] items-center">
                     <ProfileCard
@@ -33,7 +33,7 @@ function About(){
                         iconUrl="/assets/demo/iconpattern.png"
                         behindGlowEnabled
                         innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
-                        className="mx-auto w-full max-w-[420px]"
+                
                     />
 
                     <div className="space-y-6">

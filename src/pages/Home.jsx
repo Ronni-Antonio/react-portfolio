@@ -7,7 +7,7 @@ function Home(){
                     speed={0.61}
                     squareSize={80}
                     hoverFillColor='#222'
-                    hoverTrailAmount={0} // number of trailing hovered shapes (0 = no trail)
+                    hoverTrailAmount={2} // number of trailing hovered shapes (0 = no trail)
                         direction="down"
                         borderColor="#4a4750"
                         hoverColor="#c79999"
