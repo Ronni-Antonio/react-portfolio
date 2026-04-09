@@ -20,7 +20,8 @@ export default function TiltedCard({
   showMobileWarning = true,
   showTooltip = true,
   overlayContent = null,
-  displayOverlayContent = false
+  displayOverlayContent = false,
+  borderRadius = '15px'
 }) {
   const ref = useRef(null);
   const x = useMotionValue(0);
@@ -99,10 +100,11 @@ export default function TiltedCard({
         <motion.img
           src={imageSrc}
           alt={altText}
-          className="absolute top-0 left-0 object-cover rounded-[15px] will-change-transform [transform:translateZ(0)]"
+          className="absolute top-0 left-0 object-cover will-change-transform [transform:translateZ(0)]"
           style={{
             width: imageWidth,
-            height: imageHeight
+            height: imageHeight,
+            borderRadius: borderRadius
           }} />
 
         {displayOverlayContent && overlayContent && (

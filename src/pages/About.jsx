@@ -5,7 +5,7 @@ import {faUser} from '@fortawesome/free-solid-svg-icons'
 
 function About(){
 
-    const icon = <FontAwesomeIcon icon={faUser}/>
+
     const email = "rhoanneantonio1@gmail.com"
     const place = "Pasig, Philippines"
     const contact = "0912-687-2700"
@@ -15,7 +15,7 @@ function About(){
         <div id="About" className="bg-white text-slate-950 min-h-screen scroll-mt-24">
             <div className="mx-auto w-full max-w-6xl px-6 py-12">
                 <div className="text-center mb-12">
-                    <h2 className='font-bold text-4xl mb-6 mt-14'>{icon} About Me</h2>
+                    <h2 className='font-bold text-4xl mb-6 mt-14'><FontAwesomeIcon icon={faUser}/> About <span className="text-indigo-500">Me</span></h2>
                 </div>
                 <div className="grid gap-10 lg:grid-cols-[420px_minmax(0,1fr)] items-center">
                     <ProfileCard
