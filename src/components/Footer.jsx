@@ -40,9 +40,9 @@ function Footer(){
                         <li>{Location} Pasig, Philippines</li>
                     </ul>
                     <ul className='flex flex-row gap-5 mt-3'>
-                        <li className='bg-white rounded-2xl p-1'><a href="">{Github}</a></li>
+                        <li className='bg-white rounded-full p-1'><a href="">{Github}</a></li>
                         <li className='bg-white rounded-full p-1'><a href="">{Facebook}</a></li>
-                        <li className='bg-white rounded-2xl p-1'>{Instagram}</li>
+                        <li className='bg-white rounded-full p-1'><a href="">{Instagram}</a></li>
                     </ul>
                 </div>
                 
