@@ -15,15 +15,15 @@ function Footer(){
 
     return(
         <footer className='bg-[#22223B] p-5'>
-            <div className='flex flex-col-3 gap-3 text-white justify-around'>
-                <div>
-                    <h3>iamrhoanne</h3>
+            <div className='flex flex-col-3 gap-4 text-white justify-around'>
+                <div className='flex-1'>
+                    <h3 className='text-3xl'>iamrhoanne</h3>
                     <p className='mt-5'>Thank you for visiting my website, let's build something together!</p>
                     <p>Let's stay connected</p>
 
                 </div>
-                <div className=''>
-                    <h3>Quick Links</h3>
+                <div className='flex-1'>
+                    <h3 className='text-3xl'>Quick Links</h3>
                     <ul className='mt-5'>
                         <li><a href="Home">{CircleRight} Home</a></li>
                         <li><a href="About">{CircleRight} About</a></li>
@@ -32,16 +32,16 @@ function Footer(){
                         <li><a href="Contact">{CircleRight} Contact</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h3>Contact Info</h3>
+                <div className='flex-1'>
+                    <h3 className='text-3xl'>Contact Info</h3>
                     <ul className='mt-5'>
                         <li>{Phone} 0912-687-2700</li>
                         <li>{Email} rhoanneantonio1@gmail.com</li>
                         <li>{Location} Pasig, Philippines</li>
                     </ul>
                     <ul className='flex flex-row gap-5 mt-3'>
-                        <li className='bg-white rounded-2xl p-1'>{Github}</li>
-                        <li className='bg-white rounded-full p-1'>{Facebook}</li>
+                        <li className='bg-white rounded-2xl p-1'><a href="">{Github}</a></li>
+                        <li className='bg-white rounded-full p-1'><a href="">{Facebook}</a></li>
                         <li className='bg-white rounded-2xl p-1'>{Instagram}</li>
                     </ul>
                 </div>
