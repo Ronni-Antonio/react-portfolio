@@ -1,101 +1,98 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import ShapeGrid from '../components/ShapeGrid';
 import TextType from '../components/TextType';
-import Button from '../components/Button';
 import TiltedCard from '../components/TiltedCard';
-import Picture from '../assets/Picture.jpg';
+import Professional from '../assets/Professional.png';
+import CVAntonio from '../assets/CV_Antonio.pdf';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
+  const heroRef = useRef(null);
+
   return (
-    <section id="Home" className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-[#f8f9fa]">
-      {/* Background ShapeGrid */}
-      <div className="absolute inset-0 z-0 bg-white">
+    <section ref={heroRef} id="Home" className="home-hero home-page-section relative flex w-full items-center overflow-hidden py-16 sm:py-20">
+      <div className="home-glow home-glow-one" aria-hidden="true" />
+      <div className="home-glow home-glow-two" aria-hidden="true" />
+      {/* The grid stays decorative so it never competes with the content. */}
+      <div className="absolute inset-0 z-0 opacity-70" aria-hidden="true">
         <ShapeGrid 
           shape="square" 
           squareSize={80} 
-          speed={0.2} 
-          borderColor="#eee" 
-          hoverFillColor="#6366f1"
-          hoverTrailAmount={10}
+          speed={0.55} 
+          borderColor="rgba(167, 139, 250, 0.18)" 
+          hoverFillColor="#6d5dfc"
+          hoverTrailAmount={6}
+          interactionTargetRef={heroRef}
         />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between">
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-12 px-6 md:flex-row md:gap-8 lg:px-10">
         {/* Left Content */}
-        <div className="w-full md:w-1/2 text-left space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+        <div className="w-full space-y-5 text-center md:w-1/2 md:text-left">
+          <h1 className="text-2xl font-bold leading-tight text-slate-900 sm:text-3xl lg:text-4xl">
             Hi There,
           </h1>
-          <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900">
-            I'm Rhoanne Nicole <span className="text-indigo-700">Antonio</span>
+          <h2 className="text-3xl font-extrabold leading-[1.08] tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+            I'm Rhoanne Nicole <span className="home-name-accent block">Antonio</span>
           </h2>
           
-          <div className="text-xl md:text-2xl font-semibold text-gray-700 flex items-center gap-2">
-            <span>I Am Into</span>
+          <div className="flex min-h-9 flex-wrap items-center justify-center gap-x-2 text-base font-semibold text-slate-600 sm:text-lg md:justify-start lg:text-xl">
+            <span>I Am into</span>
             <TextType 
-              text={['Backend Development', 'Web Design', 'Software Engineering']} 
-              className="text-indigo-600"
+              text={['Cloud Engineering','DevOps Engineering', 'Web Development', 'Software Engineering']} 
+              className="home-type-text"
               typingSpeed={70}
               deletingSpeed={40}
               pauseDuration={2000}
             />
           </div>
 
-          <div className="pt-4">
-            <Button 
-              value={
-                <span className="flex items-center gap-2">
-                  About Me <FontAwesomeIcon icon={faArrowRight} className="text-sm" />
-                </span>
-              }
-              className="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 transition-colors shadow-lg"
-              clickHandler={() => {
-                const aboutSection = document.getElementById('About');
-                if (aboutSection) {
-                  aboutSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            />
+          <p className="home-summary mx-auto max-w-xl text-center text-[0.95rem] leading-7 text-slate-300 sm:text-base md:mx-0 md:text-left">
+            Fourth-year BS IT student who builds full-stack web apps with Laravel, React.js, and Tailwind CSS, with experience in REST APIs, cloud deployment, and CI/CD. Seeking to contribute to a development team and grow as a full stack developer.
+          </p>
+
+          <div className="pt-2">
+            <a
+              className="home-cta inline-flex items-center gap-2 rounded-full px-8 py-3 font-bold text-white transition hover:-translate-y-0.5"
+              href={CVAntonio}
+              download="CV_Antonio.pdf"
+            >
+              Resume <FontAwesomeIcon icon={faDownload} className="text-sm" aria-hidden="true" />
+            </a>
           </div>
 
           {/* Social Icons */}
-          <div className="flex gap-4 pt-6">
-            <a href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-900 text-white hover:bg-indigo-700 transition-colors">
+          <div className="flex justify-center gap-3 pt-3 md:justify-start">
+            <a href="https://www.linkedin.com/in/rhoanne-antonio-3a6767364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="home-social">
               <FontAwesomeIcon icon={faLinkedin} />
             </a>
-            <a href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-900 text-white hover:bg-indigo-700 transition-colors">
+            <a href="https://github.com/Ronni-Antonio?tab=overview&from=2026-11-01&to=2026-11-21" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="home-social">
               <FontAwesomeIcon icon={faGithub} />
             </a>
-            <a href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-900 text-white hover:bg-indigo-700 transition-colors">
+            <a href="https://www.facebook.com/rhoannenicole.antonio.9" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="home-social">
               <FontAwesomeIcon icon={faFacebook} />
-            </a>
-            <a href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-900 text-white hover:bg-indigo-700 transition-colors">
-              <FontAwesomeIcon icon={faInstagram} />
             </a>
           </div>
         </div>
 
         {/* Right Content - TiltedCard */}
-        <div className="w-full md:w-1/2 flex justify-center mt-12 md:mt-0">
-          <div className="relative">
-            {/* Circular shadow/background for the profile image as seen in the screenshot */}
-            <div className="absolute inset-0 bg-gray-200 rounded-full blur-2xl opacity-50 transform scale-110"></div>
+        <div className="flex w-full justify-center md:w-1/2">
+          <div className="home-portrait-wrap relative">
             
             <TiltedCard
-              imageSrc={Picture}
-              altText="Jorenz Ruiz Profile"
-              containerHeight="450px"
-              containerWidth="450px"
-              imageHeight="400px"
-              imageWidth="400px"
-              rotateAmplitude={12}
-              scaleOnHover={1.05}
+              imageSrc={Professional}
+              altText="Rhoanne Nicole Antonio"
+              containerHeight="min(500px, 78vw)"
+              containerWidth="min(400px, 78vw)"
+              imageHeight="min(500px, 78vw)"
+              imageWidth="min(400px, 78vw)"
+              rotateAmplitude={8}
+              scaleOnHover={1.03}
               showTooltip={false}
               showMobileWarning={false}
-              borderRadius="50%"
+              
             />
           </div>
         </div>

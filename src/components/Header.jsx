@@ -1,16 +1,48 @@
 
+import { useEffect, useState } from 'react'
+
 function Header(){
+    const [isScrolled, setIsScrolled] = useState(false)
+    const [menuOpen, setMenuOpen] = useState(false)
+
+    useEffect(() => {
+        const updateScrollState = () => setIsScrolled(window.scrollY > 12)
+
+        updateScrollState()
+        window.addEventListener('scroll', updateScrollState, { passive: true })
+        return () => window.removeEventListener('scroll', updateScrollState)
+    }, [])
+
     return(
-        <nav className="absolute bg-[#22223B] flex justify-between items-center p-5 sticky top-0 shadow-xl/20">
-            <div className="text-[#9a8c98] ml-40 font-extrabold text-l"><a href="#Home">iamrhoanne</a></div>
-            <ul className="list-none flex flex-row gap-8 justify-end text-white mr-40  font-bold">
-                <li><a href="#Home" className="hover:text-[#9a8c98] w-fit pb-1 border-b-2 border-transparent hover:border-[#9a8c98] hover:pb-2 transition-all duration-200">Home</a></li>
-                <li><a href="#About" className="hover:text-[#9a8c98] w-fit pb-1 border-b-2 border-transparent hover:border-[#9a8c98] hover:pb-2 transition-all duration-200">About</a></li>
-                <li><a href="#Skills" className="hover:text-[#9a8c98] w-fit pb-1 border-b-2 border-transparent hover:border-[#9a8c98] hover:pb-2 transition-all duration-200">Skills</a></li>
-                <li><a href="#Experience" className="hover:text-[#9a8c98] w-fit pb-1 border-b-2 border-transparent hover:border-[#9a8c98] hover:pb-2 transition-all duration-200">Experience</a></li>
-                <li><a href="#Contact" className="hover:text-[#9a8c98] w-fit pb-1 border-b-2 border-transparent hover:border-[#9a8c98] hover:pb-2 transition-all duration-200">Contact</a></li>
-            </ul>
-        </nav>
+        <header className={`site-header${isScrolled ? ' site-header-scrolled' : ''}`}>
+            <div className="site-header-inner">
+                <a className="site-brand" href="#Home" aria-label="iamrhoanne home">
+                    <span className="site-brand-mark" aria-hidden="true">r</span>
+                    <span>iamrhoanne</span>
+                </a>
+                <button
+                    className={`site-menu-toggle${menuOpen ? ' menu-open' : ''}`}
+                    type="button"
+                    aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                    aria-expanded={menuOpen}
+                    aria-controls="main-navigation"
+                    onClick={() => setMenuOpen(open => !open)}
+                >
+                    <span />
+                    <span />
+                    <span />
+                </button>
+                <nav id="main-navigation" className={`site-nav-wrap${menuOpen ? ' site-nav-open' : ''}`} aria-label="Main navigation">
+                    <ul className="site-nav list-none">
+                        <li><a href="#Home" onClick={() => setMenuOpen(false)}>Home</a></li>
+                        <li><a href="#Skills" onClick={() => setMenuOpen(false)}>Tech Stack</a></li>
+                        <li><a href="#Experience" onClick={() => setMenuOpen(false)}>Projects</a></li>
+                        <li><a href="#Credentials" onClick={() => setMenuOpen(false)}>Credentials</a></li>
+                        <li><a href="#Contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
     )
 }
 

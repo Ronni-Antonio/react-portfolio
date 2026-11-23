@@ -1,9 +1,9 @@
-import { useState } from 'react'
 import './App.css'
 import Home from './pages/Home'
 import Header from './components/Header.jsx'
-import About from './pages/About.jsx'
 import Skills from './pages/Skills.jsx'
+import Experience from './pages/Experience.jsx'
+import Credentials from './pages/Credentials.jsx'
 import Contact from './pages/Contact.jsx'
 import Footer from './components/Footer.jsx'
 
@@ -17,9 +17,11 @@ function App() {
 
       <Home/>
 
-      <About/>
-
       <Skills/>
+
+      <Experience/>
+
+      <Credentials/>
 
       <Contact/>
       

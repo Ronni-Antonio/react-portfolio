@@ -7,7 +7,8 @@ const ShapeGrid = ({
   squareSize = 40,
   hoverFillColor = '#222',
   shape = 'square',
-  hoverTrailAmount = 0
+  hoverTrailAmount = 0,
+  interactionTargetRef
 }) => {
   const canvasRef = useRef(null);
   const requestRef = useRef(null);
@@ -15,6 +16,7 @@ const ShapeGrid = ({
   const numSquaresY = useRef(0);
   const gridOffset = useRef({ x: 0, y: 0 });
   const hoveredSquareRef = useRef(null);
+  const pointerPositionRef = useRef(null);
   const trailCells = useRef([]);
   const cellOpacities = useRef(new Map());
 
@@ -22,6 +24,7 @@ const ShapeGrid = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    const interactionTarget = interactionTargetRef?.current || canvas;
 
     const isHex = shape === 'hexagon';
     const isTri = shape === 'triangle';
@@ -200,10 +203,20 @@ const ShapeGrid = ({
         Math.sqrt(canvas.width ** 2 + canvas.height ** 2) / 2
       );
       gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
-      gradient.addColorStop(1, '#060010');
+      gradient.addColorStop(1, 'rgba(99, 102, 241, 0.07)');
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      if (pointerPositionRef.current) {
+        const { x, y } = pointerPositionRef.current;
+        const pointerGlow = ctx.createRadialGradient(x, y, 0, x, y, 230);
+        pointerGlow.addColorStop(0, 'rgba(99, 102, 241, 0.16)');
+        pointerGlow.addColorStop(0.45, 'rgba(139, 92, 246, 0.08)');
+        pointerGlow.addColorStop(1, 'rgba(139, 92, 246, 0)');
+        ctx.fillStyle = pointerGlow;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
     };
 
     const updateAnimation = () => {
@@ -275,6 +288,7 @@ const ShapeGrid = ({
       const rect = canvas.getBoundingClientRect();
       const mouseX = event.clientX - rect.left;
       const mouseY = event.clientY - rect.top;
+      pointerPositionRef.current = { x: mouseX, y: mouseY };
 
       if (isHex) {
         const colShift = Math.floor(gridOffset.current.x / hexHoriz);
@@ -366,6 +380,7 @@ const ShapeGrid = ({
     };
 
     const handleMouseLeave = () => {
+      pointerPositionRef.current = null;
       if (hoveredSquareRef.current && hoverTrailAmount > 0) {
         trailCells.current.unshift({ ...hoveredSquareRef.current });
         if (trailCells.current.length > hoverTrailAmount) trailCells.current.length = hoverTrailAmount;
@@ -373,17 +388,17 @@ const ShapeGrid = ({
       hoveredSquareRef.current = null;
     };
 
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseleave', handleMouseLeave);
+    interactionTarget.addEventListener('mousemove', handleMouseMove);
+    interactionTarget.addEventListener('mouseleave', handleMouseLeave);
     requestRef.current = requestAnimationFrame(updateAnimation);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      canvas.removeEventListener('mouseleave', handleMouseLeave);
+      interactionTarget.removeEventListener('mousemove', handleMouseMove);
+      interactionTarget.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [direction, speed, borderColor, hoverFillColor, squareSize, shape, hoverTrailAmount]);
+  }, [direction, speed, borderColor, hoverFillColor, squareSize, shape, hoverTrailAmount, interactionTargetRef]);
 
   return <canvas ref={canvasRef} className="w-full h-full border-none block"></canvas>;
 };
