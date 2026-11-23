@@ -15,7 +15,7 @@ const projectVideos = import.meta.glob('../assets/images/projects/**/*.{mp4,webm
 
 const projectDetails = [
   {
-    folder: 'AI-Driven Smart Waste Segregation and Incentive Management System Using Computer Vision, IoT Sensors, and Predictive Recycling Analytics for Pasig Elementary School',
+    folder: 'AI Smart Waste Segregation System',
     title: 'Plink Smart Eco Recycling',
     category: 'AI · IoT · Sustainability',
     created: 'July 2026',
